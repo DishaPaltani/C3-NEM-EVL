@@ -1,0 +1,162 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "This is a sample server for an online bookstore.",
+      "version": "1.0.0",
+      "title": "Bookstore API"
+    },
+    "host": "localhost:3000",
+    "basePath": "/api",
+    "tags": [
+      {
+        "name": "auth",
+        "description": "Authentication"
+      },
+      {
+        "name": "orders",
+        "description": "Order management"
+      },
+      {
+        "name": "books",
+        "description": "Book management"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "paths": {
+      "/auth/signup": {
+        "post": {
+          "tags": [
+            "auth"
+          ],
+          "summary": "User signup",
+          "description": "User signup",
+          "operationId": "signup",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "User object",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation"
+            }
+          }
+        }
+      },
+      "/auth/signin": {
+        "post": {
+          "tags": [
+            "auth"
+          ],
+          "summary": "User signin",
+          "description": "User signin",
+          "operationId": "signin",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "User object",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation"
+            }
+          }
+        }
+      },
+      "/orders/{userId}": {
+        "get": {
+          "tags": [
+            "orders"
+          ],
+          "summary": "Get orders by customer",
+          "description": "Get orders by customer",
+          "operationId": "getOrdersByCustomer",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "userId",
+              "in": "path",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation"
+            }
+          }
+        }
+      },
+      "/books/{bookId}/reviews": {
+        "get": {
+          "tags": [
+            "books"
+          ],
+          "summary": "Get reviews for a book",
+          "description": "Get reviews for a book",
+          "operationId": "getBookReviews",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "bookId",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+  
